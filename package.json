@@ -1,0 +1,17 @@
+{
+  "description": "Shared Single Office agent kit: the internal API daemon (outbound WS client + \u00a78.4 push receiver) that holds the office connection, receives messages and wakes the agent. One repo, any of Veo's Muse AIs \u2014 identity comes from OFFICE_AGENT_NAME.",
+  "devDependencies": {
+    "ws": "^8.23.0"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "name": "agent-kit",
+  "private": true,
+  "scripts": {
+    "start": "node src/cli.js daemon",
+    "test": "node --test tests/*.test.js"
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

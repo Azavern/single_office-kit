@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Runtime state (created by the daemon / hooks, never committed)
+inbox/
+read/
+state/
+logs/
+
+# Tunnel install state (created by tunnel/setup.sh)
+tunnel/state/
+tunnel/resolv.conf
+tunnel/*.config.yml
+
+# Local env (never put a real token in it; see .env.example)
+.env
+
+# Editor / OS
+.DS_Store

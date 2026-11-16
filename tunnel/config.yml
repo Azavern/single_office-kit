@@ -1,0 +1,25 @@
+# cloudflared config template — Single Office tunnel kit (agent-kit).
+#
+# Fill in the placeholders (or let tunnel/setup.sh do it):
+#   <TUNNEL_ID>   — the named tunnel's UUID from Veo's Cloudflare dashboard.
+#   <AGENT>       — the agent name, e.g. finch (hostname <AGENT>.sailox.my.id).
+#   <CREDS_FILE>  — the tunnel credentials file, mode 600, from the Secure
+#                   Vault (never in chat/logs). Default:
+#                   ~/.config/single-office/<AGENT>-tunnel.json
+#
+# Ingress exposes ONLY the push path. /health and /inbox are NOT public:
+# cloudflared answers 404 for everything else before it ever reaches
+# the daemon. The daemon itself still verifies the §8.4 HMAC on /push.
+#
+# Run with: tunnel/run-cloudflared.sh <AGENT>
+# (it starts the DNS forwarder if needed and runs cloudflared in a
+# private mount namespace whose /etc/resolv.conf points at it).
+
+tunnel: <TUNNEL_ID>
+credentials-file: <CREDS_FILE>
+
+ingress:
+  - hostname: <AGENT>.sailox.my.id
+    path: ^/push$
+    service: http://localhost:8789
+  - service: http_status:404
